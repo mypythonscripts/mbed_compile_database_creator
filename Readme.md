@@ -14,6 +14,7 @@ mbedプロジェクトは, cleanされている前提 <br>
 mbedから, GNU-GCC-MAKEでプロジェクトをエクスポートし, 展開後, <br>
 プロジェクト配下に, 本リポジトリのpythonスクリプトを置く. <br>
 その後, makefileのうち, <br>
++@$(MAKETARGET) <br>
 @$(AS) -c $(ASM_FLAGS) -o $@ $< <br>
 @$(CC) $(C_FLAGS) $(INCLUDE_PATHS) -o $@ $< <br>
 @$(CCP) $(CXX_FLAGS) $(INCLUDE_PATHS) -o $@ $< <br>
