@@ -20,6 +20,29 @@ def getChangedDirectory(commandStr):
 
         return commandArray[index + 1]
 
+def isCompilerCommands(commandStr, compilerNames):
+    """
+    Check if the command is compile message.
+    Command must be started with compiler name.
+
+    Parameters
+    ----------
+    commandStr : str
+        makefile compile command string
+    
+    ----------
+    compilerNames : list
+        compiler names
+    """
+    result = False
+    for compiler in compilerNames:
+        if str(commandStr).find(compiler, 0) == 0:
+            result = True
+            break
+    
+    return result
+    
+    
 
 #file readout
 path = './Make.log'
@@ -47,13 +70,7 @@ for line in lines:
         currentDirectory = getChangedDirectory(line)
 
     #check if the line starts with compiler name
-    isCompilerMessage = False 
-    for compiler in compilers:
-        if line.find(compiler, 0) == 0:
-            isCompilerMessage = True
-            break
-    
-    if isCompilerMessage == True:
+    if isCompilerCommands(line, compilers) == True:
         #if not first comma
         if cnt > 0:
             jsonFile.write(',')
